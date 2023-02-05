@@ -26,7 +26,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) ->Path:
   """Write DataFrame out locally as parquet file"""
  
  #Added creation of the data/color directory:
-  Path(f"data/{color}").mkdir(parents=True, exist_ok=True)
+ #Path(f"data/{color}").mkdir(parents=True, exist_ok=True)
 
   path = Path(f'data/{color}/{dataset_file}.parquet')
   df.to_parquet(path, compression='gzip')
@@ -46,8 +46,8 @@ def etl_web_to_gcs() ->None:
     color = "green"
     year = 2020
     month = 11  
-    dataset_file = f'{color}_tripdata_{year}-{month:02}'   #--> :02 is for 2 digit month
-    dataset_url = f'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz'
+    dataset_file = f"{color}_tripdata_{year}-{month:02}"   #--> :02 is for 2 digit month
+    dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
     df = fetch(dataset_url)
     df_clean = clean(df)
